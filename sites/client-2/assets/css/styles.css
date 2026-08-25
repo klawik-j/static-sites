@@ -1,0 +1,587 @@
+/* Gospodarstwo Rolno-Nasienne Ziętarscy — single stylesheet, no framework */
+
+/* Montserrat + Roboto Slab are loaded from Google Fonts in the page <head>. */
+
+/* ---------- Tokens ---------- */
+:root {
+    --dark: #212529;
+    --green: #1c6814;
+    --green-bright: #278f1c;
+    --gold: #ffc800;
+    --light: #f8f9fa;
+    --muted: #6c757d;
+    --border: #e9ecef;
+    --text: #212529;
+    --header-h: 4.5rem;
+
+    --font-head: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-serif: "Roboto Slab", Georgia, "Times New Roman", serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-head);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+    background: #fff;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: var(--green);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+}
+
+.container {
+    width: min(100% - 2rem, 1140px);
+    margin-inline: auto;
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    padding: 0.75rem 1.25rem;
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 0;
+}
+
+:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border-radius: 0.2rem;
+    background: var(--green);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.0625em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background: var(--green-bright);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    background: var(--dark);
+    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: var(--header-h);
+}
+
+.brand img {
+    width: clamp(9rem, 45vw, 13rem);
+    height: auto;
+    transition: height 0.3s ease-in-out;
+}
+
+.nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    border: 0;
+    border-radius: 0.2rem;
+    background: var(--green);
+    color: #fff;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.nav-toggle__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.site-nav {
+    display: none;
+    flex-basis: 100%;
+}
+
+.site-nav.is-open {
+    display: block;
+}
+
+.site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 1rem;
+}
+
+.site-nav a {
+    display: block;
+    padding: 0.75rem 0;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.0625em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.site-nav a:hover,
+.site-nav a.is-active {
+    color: var(--gold);
+}
+
+@media (min-width: 62em) {
+    .site-header {
+        background: transparent;
+        padding-block: 0.75rem;
+    }
+
+    .site-header.is-scrolled {
+        background: var(--dark);
+        padding-block: 0;
+    }
+
+    .brand img {
+        width: auto;
+        height: 2.25rem;
+    }
+
+    .site-header.is-scrolled .brand img {
+        height: 1.75rem;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+
+    .site-nav {
+        display: block;
+        flex-basis: auto;
+    }
+
+    .site-nav ul {
+        display: flex;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    .site-nav a {
+        padding: 0;
+    }
+}
+
+/* ---------- Masthead ---------- */
+.masthead {
+    padding: calc(var(--header-h) + 5rem) 0 5rem;
+    text-align: center;
+    color: #fff;
+    background-color: var(--dark);
+    background-image: linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)), url("../img/hero.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.masthead__subheading {
+    margin: 0 0 1.5rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 3vw, 2.25rem);
+    line-height: 1.3;
+}
+
+.masthead__heading {
+    margin: 0 0 2.5rem;
+    font-size: clamp(1.9rem, 6vw, 4rem);
+    text-transform: uppercase;
+}
+
+@media (min-width: 62em) {
+    .masthead {
+        padding: 17rem 0 12.5rem;
+    }
+}
+
+/* ---------- Sections ---------- */
+.section {
+    padding: 5rem 0;
+}
+
+.section--light {
+    background: var(--light);
+}
+
+.section__heading {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* ---------- Offer ---------- */
+.offer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    /* start, not stretch: expanding one card must not pad out its row neighbours */
+    align-items: start;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.offer__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+}
+
+/* clips the hover zoom so it cannot spill onto the card text */
+.offer__media {
+    overflow: hidden;
+}
+
+.offer__item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.offer__item:hover img {
+    transform: scale(1.04);
+}
+
+.offer__body {
+    padding: 1.5rem;
+}
+
+.offer__name {
+    margin: 0 0 0.25rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.offer__lead {
+    margin: 0 0 1.25rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+}
+
+.offer__details {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+.offer__details summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.0625em;
+    text-transform: uppercase;
+    color: var(--green);
+}
+
+/* stretches the summary's hit area over the whole card, so any click toggles it */
+.offer__details summary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.offer__item:hover summary,
+.offer__details summary:focus-visible {
+    color: var(--green-bright);
+}
+
+.offer__specs {
+    /* lifted above the card-wide hit area so the text stays selectable */
+    position: relative;
+    z-index: 1;
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+    cursor: auto;
+}
+
+.offer__specs li::marker {
+    color: var(--green);
+}
+
+.offer__specs li + li {
+    margin-top: 0.5rem;
+}
+
+.offer__note {
+    margin: 3rem 0 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* ---------- Timeline ---------- */
+.timeline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2.5rem;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--border);
+}
+
+.timeline__item {
+    position: relative;
+    min-height: 5rem;
+    margin-bottom: 3rem;
+    padding-left: 6.5rem;
+}
+
+.timeline__item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5rem;
+    height: 5rem;
+    border: 7px solid var(--border);
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--green);
+}
+
+.timeline__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.timeline__panel h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+}
+
+.timeline__subheading {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--green);
+    font-size: 1.1rem;
+}
+
+.timeline__panel p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.timeline__item--final {
+    padding-left: 0;
+}
+
+.timeline__image--text {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    height: 8rem;
+    margin: 0;
+    padding: 0.5rem;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1.25;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+@media (min-width: 48em) {
+    .timeline::before {
+        left: 50%;
+    }
+
+    .timeline__item {
+        display: flex;
+        min-height: 11rem;
+        margin-bottom: 3.5rem;
+        padding-left: 0;
+    }
+
+    .timeline__image {
+        left: 50%;
+        width: 10rem;
+        height: 10rem;
+        transform: translateX(-50%);
+    }
+
+    .timeline__panel {
+        width: calc(50% - 7rem);
+    }
+
+    .timeline__item:nth-child(odd) .timeline__panel {
+        margin-right: auto;
+        text-align: right;
+    }
+
+    .timeline__item:nth-child(even) .timeline__panel {
+        margin-left: auto;
+        text-align: left;
+    }
+
+    .timeline__item--final {
+        justify-content: center;
+    }
+
+    .timeline__image--text {
+        width: 10rem;
+        height: 10rem;
+        border: 7px solid var(--border);
+        border-radius: 50%;
+        background: var(--green);
+        transform: none;
+        font-size: 1rem;
+    }
+}
+
+/* ---------- Contact ---------- */
+.section--dark {
+    color: #fff;
+    text-align: center;
+    background-color: var(--dark);
+    background-image: linear-gradient(rgb(33 37 41 / 88%), rgb(33 37 41 / 88%)), url("../img/kontakt-bg.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.contact {
+    font-style: normal;
+    font-size: 1.125rem;
+}
+
+.contact__name {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.contact a {
+    color: var(--gold);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+.contact__nip {
+    margin: 2.5rem 0;
+    font-size: 1.125rem;
+}
+
+.contact__nip span {
+    display: block;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.contact__map {
+    display: block;
+    width: 100%;
+    height: 400px;
+    border: 0;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    text-align: center;
+    background: #fff;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

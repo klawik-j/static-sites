@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pl" data-lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hanna Lewandowska — ECO ENGINEERING</title>
+  <meta name="description" content="Hanna Lewandowska ECO ENGINEERING — usługi w zakresie ochrony środowiska. Environmental protection services.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="nav" id="nav">
+    <div class="nav__container">
+      <a href="#start" class="nav__logo">Hanna Lewandowska</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__menu" id="navMenu" role="navigation">
+        <ul class="nav__list">
+          <li><a href="#start" class="nav__link" data-pl="Start" data-en="Home">Start</a></li>
+          <li><a href="#about" class="nav__link" data-pl="O nas" data-en="About">O nas</a></li>
+          <li><a href="#services" class="nav__link" data-pl="Oferta" data-en="Services">Oferta</a></li>
+          <li><a href="#calendar" class="nav__link" data-pl="Kalendarium" data-en="Calendar">Kalendarium</a></li>
+          <li><a href="#contact" class="nav__link" data-pl="Kontakt" data-en="Contact">Kontakt</a></li>
+        </ul>
+        <button class="nav__lang" id="langToggle" aria-label="Switch language">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="start">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">Hanna Lewandowska</h1>
+        <p class="hero__subtitle">ECO ENGINEERING</p>
+        <p class="hero__tagline" data-pl="Doświadczona firma świadcząca usługi w&nbsp;zakresie ochrony środowiska" data-en="Your trusted partner in environmental compliance">Doświadczona firma świadcząca usługi w&nbsp;zakresie ochrony środowiska</p>
+        <a href="#contact" class="hero__cta" data-pl="Skontaktuj się" data-en="Get in touch">Skontaktuj się</a>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section section--light" id="about">
+      <div class="container">
+        <h2 class="section__title" data-pl="O nas" data-en="About us">O nas</h2>
+        <div class="about__content">
+          <p data-pl="Hanna Lewandowska ECO ENGINEERING to doświadczona, dynamicznie rozwijająca się firma świadcząca usługi w zakresie ochrony środowiska. Naszym celem jest wsparcie przedsiębiorstw w prawidłowej i terminowej realizacji obowiązków wynikających z przepisów ochrony środowiska." data-en="Hanna Lewandowska ECO ENGINEERING is an established and growing consultancy specialising in environmental compliance. We help businesses meet their regulatory obligations — accurately and on time.">Hanna Lewandowska ECO ENGINEERING to doświadczona, dynamicznie rozwijająca się firma świadcząca usługi w zakresie ochrony środowiska. Naszym celem jest wsparcie przedsiębiorstw w prawidłowej i terminowej realizacji obowiązków wynikających z przepisów ochrony środowiska.</p>
+          <p data-pl="Oferujemy Państwu kompleksową pomoc w bieżącym wypełnianiu obowiązków z zakresu ochrony środowiska, jak również w formalnościach związanych z planowaniem inwestycji." data-en="We provide end-to-end support — from day-to-day environmental reporting to the permits and approvals required for new investments.">Oferujemy Państwu kompleksową pomoc w bieżącym wypełnianiu obowiązków z zakresu ochrony środowiska, jak również w formalnościach związanych z planowaniem inwestycji.</p>
+        </div>
+        <!-- <div class="about__partners">
+          <h3 class="about__partners-label" data-pl="Współpracujemy z" data-en="Trusted by">Współpracujemy z</h3>
+          <div class="partners__strip">
+            <img src="img/firmy1000x107.jpg" alt="Partner companies logos" class="about__partners-img" loading="lazy">
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="section section--white" id="services">
+      <div class="container">
+        <h2 class="section__title" data-pl="Oferta" data-en="Services">Oferta</h2>
+        <div class="services__grid">
+
+          <!-- Service 1: Environmental Outsourcing -->
+          <div class="card">
+            <div class="card__icon-wrap">
+              <svg class="card__icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" stroke="var(--green-light)" stroke-width="2" fill="var(--green-bg)"/>
+                <path d="M26 22h20a2 2 0 012 2v32a2 2 0 01-2 2H26a2 2 0 01-2-2V24a2 2 0 012-2z" stroke="var(--green-primary)" stroke-width="2.5" fill="none"/>
+                <path d="M30 31h12M30 36h12M30 41h8" stroke="var(--green-primary)" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="52" cy="48" r="10" stroke="var(--green-dark)" stroke-width="2.5" fill="var(--green-bg)"/>
+                <path d="M52 42v6" stroke="var(--green-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M52 48l4 2.5" stroke="var(--green-dark)" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="52" cy="48" r="1.2" fill="var(--green-dark)"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title" data-pl="Outsourcing środowiskowy" data-en="Environmental compliance outsourcing">Outsourcing środowiskowy</h3>
+              <p class="card__desc" data-pl="Usługi outsourcingu środowiskowego i doradztwa kierujemy do firm, które nie dysponują własnymi działami ds. ochrony środowiska." data-en="Ideal for companies without a dedicated environmental department — we serve as your external compliance team.">Usługi outsourcingu środowiskowego i doradztwa kierujemy do firm, które nie dysponują własnymi działami ds. ochrony środowiska.</p>
+              <button class="card__toggle" aria-expanded="false" data-pl="Szczegóły" data-en="Details">Szczegóły</button>
+              <div class="card__details" hidden>
+                <ul>
+                  <li data-pl="Wyliczanie opłat za gospodarcze korzystanie ze środowiska (emisje do powietrza, pobór wód, odprowadzanie ścieków, składowanie odpadów)" data-en="Calculating environmental usage fees (air emissions, water abstraction, wastewater discharge, waste disposal)">Wyliczanie opłat za gospodarcze korzystanie ze środowiska (emisje do powietrza, pobór wód, odprowadzanie ścieków, składowanie odpadów)</li>
+                  <li data-pl="Prowadzenie ewidencji odpadów, generowanie kart przekazania odpadów" data-en="Waste record-keeping and transfer documentation">Prowadzenie ewidencji odpadów, generowanie kart przekazania odpadów</li>
+                  <li data-pl="Sporządzanie sprawozdań i raportów: OPAK-1, OPAK-2, OPAK-3, OŚ-OP1, KOBiZE, PRTR" data-en="Regulatory reports and filings: OPAK-1, OPAK-2, OPAK-3, OŚ-OP1, KOBiZE, PRTR">Sporządzanie sprawozdań i raportów: OPAK-1, OPAK-2, OPAK-3, OŚ-OP1, KOBiZE, PRTR</li>
+                  <li data-pl="Sprawozdania o zużytym sprzęcie elektrycznym i elektronicznym" data-en="WEEE (Waste Electrical and Electronic Equipment) reporting">Sprawozdania o zużytym sprzęcie elektrycznym i elektronicznym</li>
+                  <li data-pl="Reprezentowanie firmy przed organami administracyjnymi" data-en="Liaising with regulatory authorities on your behalf">Reprezentowanie firmy przed organami administracyjnymi</li>
+                  <li data-pl="Pomoc w rozwiązywaniu problemów technicznych i merytorycznych" data-en="Technical and regulatory problem-solving support">Pomoc w rozwiązywaniu problemów technicznych i merytorycznych</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 2: Environmental Measurements -->
+          <div class="card">
+            <div class="card__icon-wrap">
+              <svg class="card__icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" stroke="var(--green-light)" stroke-width="2" fill="var(--green-bg)"/>
+                <path d="M34 20v18l-6 12a4 4 0 003.47 6h17.06a4 4 0 003.47-6l-6-12V20" stroke="var(--green-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <path d="M32 20h16" stroke="var(--green-primary)" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="37" cy="48" r="2" fill="var(--green-dark)"/>
+                <circle cx="43" cy="45" r="1.5" fill="var(--green-dark)"/>
+                <circle cx="40" cy="51" r="1.5" fill="var(--green-light)"/>
+                <path d="M37 38h6" stroke="var(--green-light)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M36 33h8" stroke="var(--green-light)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title" data-pl="Pomiary środowiskowe" data-en="Environmental monitoring">Pomiary środowiskowe</h3>
+              <p class="card__desc" data-pl="We współpracy z akredytowanymi laboratoriami zajmujemy się kompleksowo organizacją badań i analiz środowiskowych." data-en="Working with accredited laboratories, we coordinate the full scope of environmental sampling, testing, and analysis.">We współpracy z akredytowanymi laboratoriami zajmujemy się kompleksowo organizacją badań i analiz środowiskowych.</p>
+              <button class="card__toggle" aria-expanded="false" data-pl="Szczegóły" data-en="Details">Szczegóły</button>
+              <div class="card__details" hidden>
+                <ul>
+                  <li data-pl="Emisje do powietrza" data-en="Air emission testing">Emisje do powietrza</li>
+                  <li data-pl="Zanieczyszczenie gruntu" data-en="Soil contamination analysis">Zanieczyszczenie gruntu</li>
+                  <li data-pl="Gospodarka wodno-ściekowa" data-en="Water and wastewater management">Gospodarka wodno-ściekowa</li>
+                  <li data-pl="Zadbamy o terminowe przeprowadzanie wymaganych badań, wynikających z posiadanych przez Państwa decyzji, oraz o związane z tym formalności." data-en="We ensure all mandatory testing required by your permits is carried out on schedule, including the associated paperwork.">Zadbamy o terminowe przeprowadzanie wymaganych badań, wynikających z posiadanych przez Państwa decyzji, oraz o związane z tym formalności.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service 3: Administrative Decisions -->
+          <div class="card">
+            <div class="card__icon-wrap">
+              <svg class="card__icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="36" stroke="var(--green-light)" stroke-width="2" fill="var(--green-bg)"/>
+                <path d="M26 24h20a2 2 0 012 2v28a2 2 0 01-2 2H26a2 2 0 01-2-2V26a2 2 0 012-2z" stroke="var(--green-primary)" stroke-width="2.5" fill="none"/>
+                <path d="M30 32h12M30 37h12M30 42h8" stroke="var(--green-primary)" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="50" cy="48" r="9" stroke="var(--green-dark)" stroke-width="2.5" fill="var(--green-bg)"/>
+                <path d="M46 48l3 3 5-6" stroke="var(--green-dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title" data-pl="Decyzje administracyjne" data-en="Permits &amp; regulatory filings">Decyzje administracyjne</h3>
+              <p class="card__desc" data-pl="Oferujemy profesjonalne usługi w zakresie przygotowywania wniosków o pozwolenia oraz zgłoszeń na etapie planowania i realizacji inwestycji." data-en="We prepare permit applications and regulatory notifications at every stage of your project — from initial planning through to commissioning.">Oferujemy profesjonalne usługi w zakresie przygotowywania wniosków o pozwolenia oraz zgłoszeń na etapie planowania i realizacji inwestycji.</p>
+              <button class="card__toggle" aria-expanded="false" data-pl="Szczegóły" data-en="Details">Szczegóły</button>
+              <div class="card__details" hidden>
+                <ul>
+                  <li data-pl="Przygotowywanie wniosków o uzyskanie pozwoleń zintegrowanych" data-en="Integrated (IPPC) permit applications">Przygotowywanie wniosków o uzyskanie pozwoleń zintegrowanych</li>
+                  <li data-pl="Przygotowywanie wniosków o uzyskanie pozwoleń sektorowych (emisje do powietrza, pozwolenia wodnoprawne, odpady)" data-en="Sector-specific permit applications (air emissions, water-law permits, waste management)">Przygotowywanie wniosków o uzyskanie pozwoleń sektorowych (emisje do powietrza, pozwolenia wodnoprawne, odpady)</li>
+                  <li data-pl="Zgłaszanie instalacji niewymagających pozwolenia" data-en="Registration of installations exempt from permitting">Zgłaszanie instalacji niewymagających pozwolenia</li>
+                  <li data-pl="Opracowywanie raportów o oddziaływaniu planowanego przedsięwzięcia na środowisko" data-en="Environmental impact assessments (EIA) for planned projects">Opracowywanie raportów o oddziaływaniu planowanego przedsięwzięcia na środowisko</li>
+                  <li data-pl="Sporządzanie raportów początkowych" data-en="Baseline environmental reports">Sporządzanie raportów początkowych</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CALENDAR ========== -->
+    <section class="section section--light" id="calendar">
+      <div class="container">
+        <h2 class="section__title" data-pl="Kalendarium" data-en="Calendar">Kalendarium</h2>
+        <p class="section__subtitle" data-pl="Terminy składania dokumentów środowiskowych" data-en="Key filing deadlines for environmental reports in Poland">Terminy składania dokumentów środowiskowych</p>
+
+        <div class="table-wrap">
+          <table class="cal-table">
+            <thead>
+              <tr>
+                <th data-pl="Termin" data-en="Deadline">Termin</th>
+                <th data-pl="Rodzaj dokumentu" data-en="Document type">Rodzaj dokumentu</th>
+                <th data-pl="Kogo dotyczy?" data-en="Applicable to">Kogo dotyczy?</th>
+                <th data-pl="Sankcje" data-en="Penalties">Sankcje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- February -->
+              <tr class="cal-table__group-row">
+                <td colspan="4" data-pl="Luty (28/29)" data-en="February (28/29)">Luty (28/29)</td>
+              </tr>
+              <tr>
+                <td>28/29.02</td>
+                <td data-pl="Raport do KOBiZE o emisjach gazów cieplarnianych i innych substancji" data-en="KOBiZE report — greenhouse gas and pollutant emissions">Raport do KOBiZE o emisjach gazów cieplarnianych i innych substancji</td>
+                <td data-pl="Przedsiębiorca korzystający ze środowiska w sposób gospodarczy" data-en="Businesses with regulated environmental impact">Przedsiębiorca korzystający ze środowiska w sposób gospodarczy</td>
+                <td data-pl="Kara administracyjna" data-en="Administrative penalty">Kara administracyjna</td>
+              </tr>
+              <tr>
+                <td>28/29.02</td>
+                <td data-pl="Sporządzenie bilansu LZO" data-en="Volatile organic compound (VOC) balance sheet">Sporządzenie bilansu LZO</td>
+                <td data-pl="Zakład zużywający lotne związki organiczne" data-en="Facilities using volatile organic compounds (VOCs)">Zakład zużywający lotne związki organiczne</td>
+                <td data-pl="Kara administracyjna" data-en="Administrative penalty">Kara administracyjna</td>
+              </tr>
+
+              <!-- March 15 -->
+              <tr class="cal-table__group-row">
+                <td colspan="4" data-pl="Marzec — do 15" data-en="March — by 15th">Marzec — do 15</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Zbiorcze zestawienie danych o rodzajach i ilości odpadów, o sposobach gospodarowania nimi" data-en="Annual waste summary — types, quantities, and disposal methods">Zbiorcze zestawienie danych o rodzajach i ilości odpadów, o sposobach gospodarowania nimi</td>
+                <td data-pl="Posiadacz odpadów prowadzący ewidencję odpadów" data-en="Waste holders maintaining records">Posiadacz odpadów prowadzący ewidencję odpadów</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie o ilości i masie sprzętu wprowadzonego do obrotu (WEEE)" data-en="WEEE market placement report — quantity and weight">Sprawozdanie o ilości i masie sprzętu wprowadzonego do obrotu (WEEE)</td>
+                <td data-pl="Wprowadzający sprzęt elektryczny i elektroniczny" data-en="EEE producers and importers">Wprowadzający sprzęt elektryczny i elektroniczny</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie o masie zużytego sprzętu zebranego, poddanego przetwarzaniu, odzyskowi i recyklingowi" data-en="WEEE collection, processing, recovery and recycling report">Sprawozdanie o masie zużytego sprzętu zebranego, poddanego przetwarzaniu, odzyskowi i recyklingowi</td>
+                <td data-pl="Wprowadzający sprzęt elektryczny i elektroniczny" data-en="EEE producers and importers">Wprowadzający sprzęt elektryczny i elektroniczny</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie o wysokości należnej opłaty produktowej (WEEE)" data-en="WEEE product fee report">Sprawozdanie o wysokości należnej opłaty produktowej (WEEE)</td>
+                <td data-pl="Wprowadzający sprzęt elektryczny i elektroniczny" data-en="EEE producers and importers">Wprowadzający sprzęt elektryczny i elektroniczny</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie o osiągniętych poziomach zbierania, odzysku i recyklingu zużytego sprzętu" data-en="WEEE collection, recovery and recycling targets report">Sprawozdanie o osiągniętych poziomach zbierania, odzysku i recyklingu zużytego sprzętu</td>
+                <td data-pl="Wprowadzający sprzęt elektryczny i elektroniczny" data-en="EEE producers and importers">Wprowadzający sprzęt elektryczny i elektroniczny</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie o rodzaju, ilości i masie wprowadzonych do obrotu baterii i akumulatorów" data-en="Battery and accumulator market placement report">Sprawozdanie o rodzaju, ilości i masie wprowadzonych do obrotu baterii i akumulatorów</td>
+                <td data-pl="Wprowadzający baterie lub akumulatory" data-en="Battery and accumulator producers/importers">Wprowadzający baterie lub akumulatory</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie o osiągniętych poziomach zbierania baterii i akumulatorów" data-en="Battery and accumulator collection targets report">Sprawozdanie o osiągniętych poziomach zbierania baterii i akumulatorów</td>
+                <td data-pl="Wprowadzający baterie lub akumulatory" data-en="Battery and accumulator producers/importers">Wprowadzający baterie lub akumulatory</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie o wysokości środków na publiczne kampanie edukacyjne" data-en="Public awareness campaign funding report">Sprawozdanie o wysokości środków na publiczne kampanie edukacyjne</td>
+                <td data-pl="Wprowadzający baterie lub akumulatory" data-en="Battery and accumulator producers/importers">Wprowadzający baterie lub akumulatory</td>
+                <td data-pl="Kara pieniężna 10 000–100 000 zł" data-en="Fine 10,000–100,000 PLN">Kara pieniężna 10 000–100 000 zł</td>
+              </tr>
+              <tr>
+                <td>15.03</td>
+                <td data-pl="Sprawozdanie roczne o pojazdach wycofanych z eksploatacji" data-en="Annual report on end-of-life vehicles">Sprawozdanie roczne o pojazdach wycofanych z eksploatacji</td>
+                <td data-pl="Przedsiębiorca prowadzący stację demontażu" data-en="Operators running a vehicle dismantling facility">Przedsiębiorca prowadzący stację demontażu</td>
+                <td>—</td>
+              </tr>
+
+              <!-- March 31 -->
+              <tr class="cal-table__group-row">
+                <td colspan="4" data-pl="Marzec — do 31" data-en="March — by 31st">Marzec — do 31</td>
+              </tr>
+              <tr>
+                <td>31.03</td>
+                <td data-pl="Zbiorcze zestawienie informacji o zakresie korzystania ze środowiska oraz wniesienie należnej opłaty" data-en="Environmental usage summary and fee payment">Zbiorcze zestawienie informacji o zakresie korzystania ze środowiska oraz wniesienie należnej opłaty</td>
+                <td data-pl="Korzystający ze środowiska" data-en="Environmental users">Korzystający ze środowiska</td>
+                <td data-pl="Kara grzywny" data-en="Fine">Kara grzywny</td>
+              </tr>
+              <tr>
+                <td>31.03</td>
+                <td data-pl="Sprawozdanie roczne o masie opakowań i produktów, osiągniętych poziomach odzysku i recyklingu (OŚ-OP1)" data-en="Annual packaging and product recovery/recycling report (OŚ-OP1)">Sprawozdanie roczne o masie opakowań i produktów, osiągniętych poziomach odzysku i recyklingu (OŚ-OP1)</td>
+                <td data-pl="Przedsiębiorcy wprowadzający produkty w opakowaniach" data-en="Companies placing packaged products on the market">Przedsiębiorcy wprowadzający produkty w opakowaniach</td>
+                <td data-pl="Opłata produktowa" data-en="Product fee">Opłata produktowa</td>
+              </tr>
+              <tr>
+                <td>31.03</td>
+                <td data-pl="Sprawozdanie roczne o masie opakowań (OPAK-1, 2, 3)" data-en="Annual packaging mass report (OPAK-1, 2, 3)">Sprawozdanie roczne o masie opakowań (OPAK-1, 2, 3)</td>
+                <td data-pl="Producent i importer opakowań" data-en="Packaging producers and importers">Producent i importer opakowań</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>31.03</td>
+                <td data-pl="Sprawozdanie E-PRTR o uwolnieniach i transferach zanieczyszczeń" data-en="E-PRTR report on pollutant releases and transfers">Sprawozdanie E-PRTR o uwolnieniach i transferach zanieczyszczeń</td>
+                <td data-pl="Prowadzący instalację" data-en="Installation operator">Prowadzący instalację</td>
+                <td data-pl="5 000–10 000 zł" data-en="5,000–10,000 PLN">5 000–10 000 zł</td>
+              </tr>
+
+              <!-- April -->
+              <tr class="cal-table__group-row">
+                <td colspan="4" data-pl="Kwiecień (30)" data-en="April (30)">Kwiecień (30)</td>
+              </tr>
+              <tr>
+                <td>30.04</td>
+                <td data-pl="Sprawozdanie roczne o wydajności recyklingu dla baterii i akumulatorów" data-en="Annual report on recycling efficiency for batteries and accumulators">Sprawozdanie roczne o wydajności recyklingu dla baterii i akumulatorów</td>
+                <td data-pl="Prowadzący recykling zużytych baterii lub akumulatorów" data-en="Battery and accumulator recycling operators">Prowadzący recykling zużytych baterii lub akumulatorów</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>30.04</td>
+                <td data-pl="Sprawozdanie o ilości i rodzaju nieczystości ciekłych odebranych z obszaru gminy" data-en="Liquid waste collection report by municipality">Sprawozdanie o ilości i rodzaju nieczystości ciekłych odebranych z obszaru gminy</td>
+                <td data-pl="Podmiot prowadzący działalność w zakresie opróżniania zbiorników bezodpływowych" data-en="Septic tank servicing operators">Podmiot prowadzący działalność w zakresie opróżniania zbiorników bezodpływowych</td>
+                <td>—</td>
+              </tr>
+
+              <!-- July -->
+              <tr class="cal-table__group-row">
+                <td colspan="4" data-pl="Lipiec (31)" data-en="July (31)">Lipiec (31)</td>
+              </tr>
+              <tr>
+                <td>31.07</td>
+                <td data-pl="Sprawozdanie o ilości i masie sprzętu wprowadzonego do obrotu (I półrocze)" data-en="EEE market placement report (H1)">Sprawozdanie o ilości i masie sprzętu wprowadzonego do obrotu (I półrocze)</td>
+                <td data-pl="Wprowadzający sprzęt elektryczny i elektroniczny" data-en="EEE producers and importers">Wprowadzający sprzęt elektryczny i elektroniczny</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>31.07</td>
+                <td data-pl="Sprawozdanie o masie zużytego sprzętu zebranego, poddanego przetwarzaniu (I półrocze)" data-en="WEEE collection and processing report (H1)">Sprawozdanie o masie zużytego sprzętu zebranego, poddanego przetwarzaniu (I półrocze)</td>
+                <td data-pl="Wprowadzający sprzęt elektryczny i elektroniczny" data-en="EEE producers and importers">Wprowadzający sprzęt elektryczny i elektroniczny</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>31.07</td>
+                <td data-pl="Sprawozdanie o masie zebranego i przekazanego zużytego sprzętu" data-en="WEEE collection and transfer report">Sprawozdanie o masie zebranego i przekazanego zużytego sprzętu</td>
+                <td data-pl="Zbierający zużyty sprzęt" data-en="WEEE collection operators">Zbierający zużyty sprzęt</td>
+                <td>500 zł / 2000 zł</td>
+              </tr>
+              <tr>
+                <td>31.07</td>
+                <td data-pl="Sprawozdanie o masie poszczególnych rodzajów odebranych odpadów komunalnych" data-en="Municipal waste collection report by type">Sprawozdanie o masie poszczególnych rodzajów odebranych odpadów komunalnych</td>
+                <td data-pl="Podmiot odbierający odpady komunalne" data-en="Municipal waste collectors">Podmiot odbierający odpady komunalne</td>
+                <td>—</td>
+              </tr>
+
+              <!-- September -->
+              <tr class="cal-table__group-row">
+                <td colspan="4" data-pl="Wrzesień (30)" data-en="September (30)">Wrzesień (30)</td>
+              </tr>
+              <tr>
+                <td>30.09</td>
+                <td data-pl="BDO — Sprawozdanie o wytworzonych odpadach. Sprawozdanie o produktach, opakowaniach i gospodarowaniu odpadami" data-en="BDO — Waste generation report and product/packaging waste management report">BDO — Sprawozdanie o wytworzonych odpadach. Sprawozdanie o produktach, opakowaniach i gospodarowaniu odpadami</td>
+                <td data-pl="Wytwórcy odpadów, wprowadzający produkty w opakowaniach" data-en="Waste producers and companies placing packaged products on the market">Wytwórcy odpadów, wprowadzający produkty w opakowaniach</td>
+                <td>5 000–1 000 000 zł</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section section--white" id="contact">
+      <div class="container">
+        <h2 class="section__title" data-pl="Kontakt" data-en="Contact">Kontakt</h2>
+        <p class="section__subtitle" data-pl="Prowadzimy działalność na terenie całego kraju. Zapraszamy do współpracy." data-en="We work with clients across Poland. Get in touch to discuss how we can help.">Prowadzimy działalność na terenie całego kraju. Zapraszamy do współpracy.</p>
+        <div class="contact__grid">
+          <a href="mailto:lewhanna@gmail.com" class="contact__item">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+            <span>lewhanna@gmail.com</span>
+          </a>
+          <a href="tel:+48888798048" class="contact__item">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>+48 888 798 048</span>
+          </a>
+          <a href="tel:+447427216442" class="contact__item">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>+44 742 721 6442</span>
+          </a>
+          <a href="https://www.linkedin.com/in/hanna-lewandowska-822381120/" target="_blank" rel="noopener noreferrer" class="contact__item">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <span>hanna-lewandowska</span>
+          </a>
+          <div class="contact__item contact__item--location">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>84-300 Lębork</span>
+          </div>
+          <div class="contact__item contact__item--nip">
+            <svg class="contact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+            <span>NIP: 8761947177</span>
+          </div>
+        </div>
+        <div class="contact__map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d600000!2d17.72!3d54.54!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd9d6e1c3e9a7d%3A0x400f3199a04dc30!2sL%C4%99bork!5e0!3m2!1spl!2spl!4v1700000000000" width="100%" height="350" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lębork location map"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; 2020–2026 Hanna Lewandowska | ECO ENGINEERING</p>
+      <button class="footer__rodo-toggle" aria-expanded="false" data-pl="Polityka prywatności" data-en="Privacy policy">Polityka prywatności</button>
+      <div class="footer__rodo" hidden>
+        <p data-pl="Dane osobowe zawarte w korespondencji elektronicznej będą przetwarzane przez Hannę Lewandowską prowadzącą działalność gospodarczą pod nazwą ECO ENGINEERING w celu umożliwienia kontaktu mailowego oraz w celu podejmowania kontaktu z adresatami, dokumentowania ustaleń dokonanych z Klientami, kontrahentami i innymi podmiotami, a także w celu przyjmowania pism, zgłoszeń i wniosków w formie elektronicznej. Twoje dane osobowe będą przetwarzane przez rok od wpływu korespondencji lub 3 lata w przypadku, gdy wiadomość zawiera treść istotną z punktu widzenia dochodzenia lub obrony roszczeń. Zawarcie w wiadomości zapytania o informację handlową stanowi zgodę na przesłanie informacji handlowych drogą elektroniczną na podany przez nadawcę adres e-mail. Wyrażoną zgodę możesz cofnąć w każdym czasie bez podawania przyczyn, lecz bez wpływu na zgodność z prawem przetwarzania przed jej cofnięciem. Przysługują Ci prawa dostępu do Twoich danych osobowych wynikające z RODO oraz ich zmiany (w tym aktualizacji), a także pozostałe prawa opisane w Polityce Prywatności." data-en="Personal data included in electronic correspondence are processed by Hanna Lewandowska, trading as ECO ENGINEERING, for the purposes of maintaining e-mail communication, documenting arrangements with clients, contractors and other parties, and receiving correspondence in electronic form. Your data will be retained for one year from receipt, or for three years where the content is relevant to the pursuit or defence of legal claims. By including a request for commercial information in your message, you consent to receiving such information electronically at the e-mail address you have provided. You may withdraw this consent at any time without stating a reason; withdrawal does not affect the lawfulness of processing carried out prior to it. Under the GDPR you have the right to access, rectify and update your personal data, as well as other rights described in our Privacy Policy.">Dane osobowe zawarte w korespondencji elektronicznej będą przetwarzane przez Hannę Lewandowską prowadzącą działalność gospodarczą pod nazwą ECO ENGINEERING w celu umożliwienia kontaktu mailowego oraz w celu podejmowania kontaktu z adresatami, dokumentowania ustaleń dokonanych z Klientami, kontrahentami i innymi podmiotami, a także w celu przyjmowania pism, zgłoszeń i wniosków w formie elektronicznej. Twoje dane osobowe będą przetwarzane przez rok od wpływu korespondencji lub 3 lata w przypadku, gdy wiadomość zawiera treść istotną z punktu widzenia dochodzenia lub obrony roszczeń. Zawarcie w wiadomości zapytania o informację handlową stanowi zgodę na przesłanie informacji handlowych drogą elektroniczną na podany przez nadawcę adres e-mail. Wyrażoną zgodę możesz cofnąć w każdym czasie bez podawania przyczyn, lecz bez wpływu na zgodność z prawem przetwarzania przed jej cofnięciem. Przysługują Ci prawa dostępu do Twoich danych osobowych wynikające z RODO oraz ich zmiany (w tym aktualizacji), a także pozostałe prawa opisane w Polityce Prywatności.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* --- Language Toggle --- */
+      const html = document.documentElement;
+      const langBtn = document.getElementById('langToggle');
+      const stored = localStorage.getItem('lang');
+      if (stored) setLang(stored);
+
+      langBtn.addEventListener('click', function () {
+        const next = html.getAttribute('data-lang') === 'pl' ? 'en' : 'pl';
+        setLang(next);
+        localStorage.setItem('lang', next);
+      });
+
+      function setLang(lang) {
+        html.setAttribute('data-lang', lang);
+        langBtn.textContent = lang === 'pl' ? 'EN' : 'PL';
+        document.querySelectorAll('[data-pl][data-en]').forEach(function (el) {
+          el.innerHTML = el.getAttribute('data-' + lang);
+        });
+      }
+
+      /* --- Mobile Hamburger --- */
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+
+      hamburger.addEventListener('click', function () {
+        const open = navMenu.classList.toggle('nav__menu--open');
+        hamburger.classList.toggle('nav__hamburger--open', open);
+        hamburger.setAttribute('aria-expanded', String(open));
+      });
+
+      // Close mobile menu on link click
+      navMenu.querySelectorAll('.nav__link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          navMenu.classList.remove('nav__menu--open');
+          hamburger.classList.remove('nav__hamburger--open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      /* --- Sticky Nav Shadow --- */
+      var lastScroll = 0;
+      window.addEventListener('scroll', function () {
+        var nav = document.getElementById('nav');
+        if (window.scrollY > 60) {
+          nav.classList.add('nav--scrolled');
+        } else {
+          nav.classList.remove('nav--scrolled');
+        }
+        lastScroll = window.scrollY;
+      }, { passive: true });
+
+      /* --- Card Details Toggle --- */
+      document.querySelectorAll('.card__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          var details = btn.nextElementSibling;
+          details.hidden = expanded;
+        });
+      });
+
+      /* --- Footer RODO Toggle --- */
+      var rodoBtn = document.querySelector('.footer__rodo-toggle');
+      if (rodoBtn) {
+        rodoBtn.addEventListener('click', function () {
+          var expanded = rodoBtn.getAttribute('aria-expanded') === 'true';
+          rodoBtn.setAttribute('aria-expanded', String(!expanded));
+          rodoBtn.nextElementSibling.hidden = expanded;
+        });
+      }
+
+      /* --- Scroll Reveal --- */
+      if ('IntersectionObserver' in window) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section, .card').forEach(function (el) {
+          el.classList.add('reveal');
+          revealObserver.observe(el);
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
