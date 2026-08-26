@@ -29,8 +29,14 @@ variable "sites" {
   }))
 
   default = {
-    client-1 = {}
-    client-2 = {}
+    client-1 = {
+      domain_names  = ["lewhanna.com", "www.lewhanna.com"]
+      route53_zone_id = "Z07911732CKCCC0OA87PL"
+    }
+    client-2 = {
+      domain_names  = ["nasiona-zietarscy.pl", "www.nasiona-zietarscy.pl"]
+      route53_zone_id = "Z05544002629RK849CHOL"
+    }
   }
 
   validation {

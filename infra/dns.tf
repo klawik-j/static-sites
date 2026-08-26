@@ -81,6 +81,8 @@ resource "aws_route53_record" "site" {
   name    = each.value.domain
   type    = each.value.record_type
 
+  allow_overwrite = true
+
   alias {
     name                   = aws_cloudfront_distribution.site[each.value.site_name].domain_name
     zone_id                = aws_cloudfront_distribution.site[each.value.site_name].hosted_zone_id
