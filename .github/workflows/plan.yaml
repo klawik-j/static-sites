@@ -1,0 +1,135 @@
+name: Terraform plan
+
+on:
+  pull_request:
+    paths:
+      - "infra/**"
+      - "!infra/bootstrap/**"
+      - "sites/**"
+      - ".github/workflows/plan.yaml"
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+concurrency:
+  group: plan-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  TF_IN_AUTOMATION: "true"
+  TF_INPUT: "false"
+
+jobs:
+  plan:
+    name: Plan infrastructure changes
+    runs-on: ubuntu-latest
+    # Fork pull requests receive no OIDC token, so there is nothing to plan with.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Check out pull request source
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_PLAN_ROLE_ARN }}
+          role-session-name: gha-plan-${{ github.run_id }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.12.2
+          terraform_wrapper: false
+
+      - name: Initialize Terraform
+        working-directory: infra
+        run: |
+          terraform init \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+            -backend-config="key=static-sites/terraform.tfstate" \
+            -backend-config="region=${AWS_REGION}" \
+            -backend-config="encrypt=true" \
+            -backend-config="use_lockfile=true"
+
+      - name: Validate Terraform
+        working-directory: infra
+        run: terraform validate
+
+      - name: Create plan
+        id: plan
+        working-directory: infra
+        run: |
+          set +e
+          terraform plan -lock=false -no-color -out=tfplan > plan.txt 2>&1
+          exit_code=$?
+          set -e
+
+          {
+            echo "exit_code=${exit_code}"
+          } >> "$GITHUB_OUTPUT"
+
+          tail -c 60000 plan.txt
+          exit "$exit_code"
+
+      - name: Comment plan on pull request
+        if: always() && steps.plan.outcome != 'skipped'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- terraform-plan:infra -->';
+            const limit = 60000;
+
+            let output = '';
+            try {
+              output = fs.readFileSync('infra/plan.txt', 'utf8');
+            } catch {
+              output = 'Terraform did not produce any plan output.';
+            }
+
+            let truncated = false;
+            if (output.length > limit) {
+              output = output.slice(-limit);
+              truncated = true;
+            }
+
+            const succeeded = '${{ steps.plan.outputs.exit_code }}' === '0';
+            const heading = succeeded
+              ? '### Terraform plan'
+              : '### Terraform plan failed';
+
+            const body = [
+              marker,
+              heading,
+              '',
+              truncated ? '_Output truncated. See the workflow logs for the full plan._' : '',
+              '<details><summary>Show plan</summary>',
+              '',
+              '```terraform',
+              output,
+              '```',
+              '',
+              '</details>',
+            ].join('\n');
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { owner, repo, issue_number }
+            );
+            const existing = comments.find(
+              (comment) => comment.user.type === 'Bot' && comment.body.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
