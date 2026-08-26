@@ -4,8 +4,8 @@
 *.tfvars
 !example.tfvars
 crash.log
-overrride.tf
-overrride.tf.json
+override.tf
+override.tf.json
 *_override.tf
 *_override.tf.json
 .terraformrc

@@ -1,80 +1,63 @@
 # Static site infrastructure
 
-This Terraform configuration creates one S3 static website bucket for each site under `../sites` and uploads its files. The GitHub Actions deployment runs it automatically after every push to `master`, including merged pull requests.
+The main stack. For each entry in `var.sites` it creates a private S3 origin
+bucket, a CloudFront distribution with Origin Access Control, a shared security
+headers policy, and — when custom domains are configured — an ACM certificate
+and Route 53 alias records. Site files under `../sites/<name>` are uploaded as
+managed objects.
+
+GitHub Actions applies this stack on every push to `master`. Applying it by hand
+should be rare.
 
 ## Prerequisites
 
-- Terraform 1.5 or newer
-- AWS credentials configured for the target account
-- Permissions to create S3 buckets, bucket policies, and objects
-- A GitHub repository with `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and optionally `AWS_SESSION_TOKEN` secrets
+- Terraform 1.10 or newer (the S3 backend uses native `use_lockfile` locking)
+- [`infra/bootstrap`](bootstrap/README.md) applied, which creates the state
+  bucket and the CI roles
+- AWS credentials for the target account
 
-## One-time remote state setup
+## Local plan and apply
 
-The main stack uses an S3 backend so GitHub Actions can share state between runs. Create the state bucket once before enabling the workflow. The commands below configure versioning, encryption, and public-access blocking without adding a separate bootstrap stack to the repository:
-
-```sh
+```bash
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-STATE_BUCKET="static-sites-terraform-state-${ACCOUNT_ID}"
-AWS_REGION="eu-central-1"
 
-aws s3api create-bucket \
-	--bucket "$STATE_BUCKET" \
-	--region "$AWS_REGION" \
-	--create-bucket-configuration LocationConstraint="$AWS_REGION"
-aws s3api put-bucket-versioning \
-	--bucket "$STATE_BUCKET" \
-	--versioning-configuration Status=Enabled
-aws s3api put-bucket-encryption \
-	--bucket "$STATE_BUCKET" \
-	--server-side-encryption-configuration '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'
-aws s3api put-public-access-block \
-	--bucket "$STATE_BUCKET" \
-	--public-access-block-configuration \
-	BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
-```
-
-If the state bucket already exists, skip the `create-bucket` command and run the remaining configuration commands.
-
-Migrate the existing local state to that bucket. Run this from the repository root while the current `infra/terraform.tfstate` still exists locally:
-
-```sh
-ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-terraform -chdir=infra init -migrate-state -force-copy \
-	-backend-config="bucket=static-sites-terraform-state-${ACCOUNT_ID}" \
-	-backend-config="key=static-sites/terraform.tfstate" \
-	-backend-config="region=eu-central-1" \
-	-backend-config="encrypt=true"
-terraform -chdir=infra plan
-```
-
-The migration plan should show no replacement of the existing site buckets. Do not delete the local state until this has been confirmed.
-
-## Local deploy
-
-From the repository root:
-
-```sh
-ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 terraform -chdir=infra init \
-	-backend-config="bucket=static-sites-terraform-state-${ACCOUNT_ID}" \
-	-backend-config="key=static-sites/terraform.tfstate" \
-	-backend-config="region=eu-central-1" \
-	-backend-config="encrypt=true"
+  -backend-config="bucket=static-sites-terraform-state-${ACCOUNT_ID}" \
+  -backend-config="key=static-sites/terraform.tfstate" \
+  -backend-config="region=eu-central-1" \
+  -backend-config="encrypt=true" \
+  -backend-config="use_lockfile=true"
+
 terraform -chdir=infra plan
 terraform -chdir=infra apply
 ```
 
-The bucket names and HTTP website endpoints are printed as Terraform outputs. The buckets are intentionally public because native S3 website endpoints require public object reads. Use CloudFront and private buckets for HTTPS, custom domains, and production traffic.
+`terraform output site_urls` prints the HTTPS URL for each site.
 
-## GitHub Actions
+CloudFront caches assets for a day, so after applying content changes outside
+the pipeline, invalidate manually:
 
-The workflow in `.github/workflows/deploy.yml` runs on every push to `master`. It checks out that exact commit, initializes the remote backend, validates Terraform, creates a plan, and applies it. A concurrency group queues deployments so two runs cannot update the same state at once.
-
-The AWS IAM user or role behind the GitHub secrets needs access to the state bucket and to manage the two site buckets, including bucket policies, website configuration, public access blocks, ownership controls, and objects. Restrict the credentials to this repository where possible and rotate access keys regularly.
-
-To remove the infrastructure, including uploaded site files:
-
-```sh
-terraform destroy
+```bash
+terraform -chdir=infra output -json distribution_ids \
+  | jq -r '.[]' \
+  | xargs -I{} aws cloudfront create-invalidation --distribution-id {} --paths '/*'
 ```
+
+## Variables
+
+| Variable                 | Default          | Purpose                                                   |
+| ------------------------ | ---------------- | --------------------------------------------------------- |
+| `aws_region`             | `eu-central-1`   | Region for the origin buckets                              |
+| `project_name`           | `static-sites`   | Prefix for bucket names and tags                           |
+| `sites`                  | two empty sites  | Map of site name to optional `domain_names` and `route53_zone_id` |
+| `error_document`         | `index.html`     | Object returned with a 404 status for 403/404 responses    |
+| `cloudfront_price_class` | `PriceClass_100` | Edge coverage                                              |
+
+## Teardown
+
+```bash
+terraform -chdir=infra destroy
+```
+
+The bootstrap stack is separate and is not removed by this. Its state bucket
+carries `prevent_destroy`.
