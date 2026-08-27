@@ -57,8 +57,8 @@ for short-lived STS credentials, and the two roles are scoped by
 
 ```
 .github/workflows/
-  plan.yml            # PR: read-only plan, posted as a comment
-  deploy.yml          # master: apply + CloudFront invalidation
+  plan.yaml           # PR: read-only plan, posted as a comment
+  deploy.yaml         # master: apply + CloudFront invalidation
 infra/
   bootstrap/          # OIDC provider, IAM roles, remote state bucket (applied by hand)
   versions.tf         # provider + version constraints
@@ -89,22 +89,27 @@ main stack locally, see [infra/README.md](infra/README.md).
 
 ## Custom domains
 
-Sites default to their CloudFront domain, which already serves valid HTTPS. To
-attach a real domain, point `sites` at an existing Route 53 hosted zone:
+Both sites already run on their own domain, each backed by an existing Route 53
+hosted zone declared in the `sites` variable:
 
 ```hcl
 sites = {
   client-1 = {
-    domain_names    = ["example.com", "www.example.com"]
-    route53_zone_id = "Z0123456789ABCDEFGHIJ"
+    domain_names    = ["lewhanna.com", "www.lewhanna.com"]
+    route53_zone_id = "Z07911732CKCCC0OA87PL"
   }
-  client-2 = {}
+  client-2 = {
+    domain_names    = ["nasiona-zietarscy.pl", "www.nasiona-zietarscy.pl"]
+    route53_zone_id = "Z05544002629RK849CHOL"
+  }
 }
 ```
 
-Terraform then requests a DNS-validated ACM certificate in `us-east-1`, writes
-the validation records, waits for issuance, and creates the alias records. A
-variable validation rule rejects a site that specifies domains without a zone.
+A site with no `domain_names` falls back to its CloudFront domain, which already
+serves valid HTTPS. When domains are set, Terraform requests a DNS-validated ACM
+certificate in `us-east-1`, writes the validation records, waits for issuance,
+and creates the alias records. A variable validation rule rejects a site that
+specifies domains without a zone.
 
 ## Design decisions
 
