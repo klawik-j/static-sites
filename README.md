@@ -129,13 +129,13 @@ specifies domains without a zone.
 
 | Item                        | Monthly                      |
 | --------------------------- | ---------------------------- |
-| S3 storage and requests     | well under $0.10 at this size |
-| CloudFront                  | $0 — traffic sits inside the perpetual free tier (1 TB out, 10M requests) |
+| S3 storage and requests     | well under $0.10 at this size (8.45 MiB across two sites) |
+| CloudFront                  | $0 — traffic sits inside the always-free tier (1 TB out, 10M requests) |
 | ACM certificates            | $0                           |
-| Route 53 hosted zone        | $0.50 per zone, only if custom domains are used |
+| Route 53 hosted zones       | $1.00 (2 zones x $0.50)      |
 | Terraform state bucket      | negligible                   |
 
-Roughly a dollar a month with two custom domains, and effectively free without.
+Roughly a dollar a month for the two custom domains currently configured.
 
 ## Not done yet
 
