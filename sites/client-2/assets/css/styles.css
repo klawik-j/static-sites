@@ -6,16 +6,26 @@
 :root {
     --dark: #212529;
     --green: #1c6814;
-    --green-bright: #278f1c;
+    --green-bright: #1f7a16;
     --gold: #ffc800;
     --light: #f8f9fa;
-    --muted: #6c757d;
+    --muted: #5a6169;
     --border: #e9ecef;
     --text: #212529;
     --header-h: 4.5rem;
 
+    /* focus ring colour; flipped to gold by the dark-background blocks below */
+    --focus: var(--dark);
+
     --font-head: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     --font-serif: "Roboto Slab", Georgia, "Times New Roman", serif;
+}
+
+.site-header,
+.masthead,
+.section--dark,
+.site-footer {
+    --focus: var(--gold);
 }
 
 /* ---------- Base ---------- */
@@ -45,6 +55,11 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* wrapper must not affect layout; every sizing rule targets the inner <img> */
+picture {
+    display: contents;
 }
 
 a {
@@ -82,12 +97,16 @@ h3 {
 }
 
 :focus-visible {
-    outline: 3px solid var(--gold);
+    outline: 3px solid var(--focus);
     outline-offset: 3px;
 }
 
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
     padding: 0.9rem 2rem;
     border-radius: 0.2rem;
     background: var(--green);
@@ -97,11 +116,29 @@ h3 {
     letter-spacing: 0.0625em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .btn:hover {
     background: var(--green-bright);
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--green);
+    box-shadow: inset 0 0 0 2px currentColor;
+}
+
+.btn--ghost:hover {
+    background: var(--green);
+    color: #fff;
+}
+
+.btn__icon {
+    flex: none;
+    width: 1.1em;
+    height: 1.1em;
+    fill: currentColor;
 }
 
 /* ---------- Header ---------- */
@@ -117,21 +154,44 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 0.5rem;
     min-height: var(--header-h);
 }
 
+.brand {
+    margin-right: auto;
+    min-width: 0;
+}
+
 .brand img {
-    width: clamp(9rem, 45vw, 13rem);
+    width: clamp(7.5rem, 38vw, 13rem);
     height: auto;
     transition: height 0.3s ease-in-out;
+}
+
+.header-phone {
+    padding: 0.6rem 0.9rem;
+    font-size: 0.8rem;
+}
+
+/* below 26em both header controls go icon-only so the row cannot wrap; aria-label names them */
+.header-phone__label,
+.nav-toggle__label {
+    display: none;
+}
+
+@media (min-width: 26em) {
+    .header-phone__label,
+    .nav-toggle__label {
+        display: inline;
+    }
 }
 
 .nav-toggle {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    min-height: 2.75rem;
     padding: 0.6rem 0.9rem;
     border: 0;
     border-radius: 0.2rem;
@@ -187,7 +247,8 @@ h3 {
 
 @media (min-width: 62em) {
     .site-header {
-        background: transparent;
+        /* scrim keeps the reverse logo legible against a bright sky before scroll */
+        background: linear-gradient(rgb(0 0 0 / 55%), rgb(0 0 0 / 0%));
         padding-block: 0.75rem;
     }
 
@@ -223,6 +284,12 @@ h3 {
     .site-nav a {
         padding: 0;
     }
+
+    /* pushed past the nav so the call action is the last thing in the header */
+    .header-phone {
+        order: 1;
+        margin-left: 2rem;
+    }
 }
 
 /* ---------- Masthead ---------- */
@@ -232,6 +299,8 @@ h3 {
     color: #fff;
     background-color: var(--dark);
     background-image: linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)), url("../img/hero.jpg");
+    background-image: linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
+        image-set(url("../img/hero.webp") type("image/webp"), url("../img/hero.jpg") type("image/jpeg"));
     background-position: center;
     background-size: cover;
 }
@@ -266,18 +335,42 @@ h3 {
 }
 
 .section__heading {
-    margin: 0 0 1rem;
+    margin: 0 0 3rem;
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     text-align: center;
     text-transform: uppercase;
 }
 
+.section__heading::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin: 1.25rem auto 0;
+    background: var(--gold);
+}
+
+.section__heading:has(+ .section__lead) {
+    margin-bottom: 1.5rem;
+}
+
+.section__lead {
+    max-width: 40rem;
+    margin: 0 auto 2.5rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
 /* ---------- Offer ---------- */
 .offer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-    /* start, not stretch: expanding one card must not pad out its row neighbours */
-    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* flex, not grid: only flex centres an incomplete final row */
+    /* flex-start, not stretch: expanding one card must not pad out its row neighbours */
+    align-items: flex-start;
     gap: 2rem;
     margin: 0;
     padding: 0;
@@ -287,12 +380,32 @@ h3 {
 .offer__item {
     position: relative;
     display: flex;
+    /* no grow: cards keep one width whether their line holds 1, 2 or 3 */
+    flex: 0 1 21rem;
     flex-direction: column;
     cursor: pointer;
     background: #fff;
     border-radius: 0.25rem;
     overflow: hidden;
     box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.offer__item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 14%);
+}
+
+/* the whole card is the toggle, so the ring belongs on the card, not the summary */
+@supports selector(:has(*)) {
+    .offer__item:has(summary:focus-visible) {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+    }
+
+    .offer__details summary:focus-visible {
+        outline: none;
+    }
 }
 
 /* clips the hover zoom so it cannot spill onto the card text */
@@ -322,6 +435,8 @@ h3 {
 }
 
 .offer__lead {
+    /* two-line floor keeps the disclosure rows aligned across a row of cards */
+    min-height: 3.4rem;
     margin: 0 0 1.25rem;
     font-family: var(--font-serif);
     font-style: italic;
@@ -335,12 +450,36 @@ h3 {
 }
 
 .offer__details summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
     cursor: pointer;
     font-weight: 700;
     font-size: 0.85rem;
     letter-spacing: 0.0625em;
     text-transform: uppercase;
     color: var(--green);
+    list-style: none;
+}
+
+.offer__details summary::-webkit-details-marker {
+    display: none;
+}
+
+.offer__details summary::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-25%) rotate(45deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.offer__details[open] summary::before {
+    transform: translateY(25%) rotate(-135deg);
 }
 
 /* stretches the summary's hit area over the whole card, so any click toggles it */
@@ -374,11 +513,34 @@ h3 {
 }
 
 .offer__note {
-    margin: 3rem 0 0;
+    margin: 0 0 1.5rem;
     font-family: var(--font-serif);
     font-style: italic;
     text-align: center;
     color: var(--muted);
+}
+
+.offer__cta {
+    margin-top: 3rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    background: #fff;
+    border-radius: 0.25rem;
+    border-top: 3px solid var(--green);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+}
+
+.offer__cta-heading {
+    margin: 0 0 0.75rem;
+    font-size: 1.5rem;
+}
+
+.offer__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 0;
 }
 
 /* ---------- Timeline ---------- */
@@ -458,7 +620,7 @@ h3 {
     justify-content: center;
     width: 8rem;
     height: 8rem;
-    margin: 0;
+    margin: 0 auto;
     padding: 0.5rem;
     color: #fff;
     font-weight: 700;
@@ -466,6 +628,12 @@ h3 {
     line-height: 1.25;
     text-align: center;
     text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.timeline__image--text:hover {
+    background: var(--green-bright);
 }
 
 @media (min-width: 48em) {
@@ -491,14 +659,13 @@ h3 {
         width: calc(50% - 7rem);
     }
 
+    /* panels alternate sides but text stays left-aligned; ragged-left copy is hard to read */
     .timeline__item:nth-child(odd) .timeline__panel {
         margin-right: auto;
-        text-align: right;
     }
 
     .timeline__item:nth-child(even) .timeline__panel {
         margin-left: auto;
-        text-align: left;
     }
 
     .timeline__item--final {
@@ -522,54 +689,74 @@ h3 {
     text-align: center;
     background-color: var(--dark);
     background-image: linear-gradient(rgb(33 37 41 / 88%), rgb(33 37 41 / 88%)), url("../img/kontakt-bg.jpg");
+    background-image: linear-gradient(rgb(33 37 41 / 88%), rgb(33 37 41 / 88%)),
+        image-set(url("../img/kontakt-bg.webp") type("image/webp"), url("../img/kontakt-bg.jpg") type("image/jpeg"));
     background-position: center;
     background-size: cover;
 }
 
-.contact {
+.contact__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: 1rem;
+    max-width: 46rem;
+    margin: 0 auto;
     font-style: normal;
-    font-size: 1.125rem;
+    text-align: left;
 }
 
-.contact__name {
-    font-weight: 700;
-    font-size: 1.3rem;
+.contact__item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin: 0;
+    padding: 1.125rem 1.25rem;
+    background: rgb(255 255 255 / 8%);
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 0.25rem;
+    color: #fff;
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.contact a {
-    color: var(--gold);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2em;
+a.contact__item:hover {
+    background: rgb(255 255 255 / 16%);
+    transform: translateY(-2px);
 }
 
-.contact__nip {
-    margin: 2.5rem 0;
-    font-size: 1.125rem;
-}
-
-.contact__nip span {
-    display: block;
-    font-weight: 700;
-    font-size: 1.5rem;
-    text-transform: uppercase;
+.contact__icon {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .contact__map {
     display: block;
     width: 100%;
     height: 400px;
+    margin-top: 3rem;
     border: 0;
+    border-radius: 0.25rem;
 }
 
 /* ---------- Footer ---------- */
 .site-footer {
-    padding: 1.5rem 0;
+    padding: 1.75rem 0;
     font-size: 0.9rem;
     text-align: center;
-    background: #fff;
+    color: rgb(255 255 255 / 75%);
+    background: var(--dark);
+    border-top: 1px solid rgb(255 255 255 / 12%);
 }
 
-.site-footer p {
+.site-footer__legal {
     margin: 0;
 }
 
