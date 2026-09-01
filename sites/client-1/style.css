@@ -517,6 +517,7 @@ button {
 
 .cal-table {
   width: 100%;
+  min-width: 900px;
   border-collapse: collapse;
   font-size: 0.88rem;
 }
@@ -565,6 +566,43 @@ button {
   padding: 10px 16px;
   border-bottom: 2px solid var(--green-light);
   letter-spacing: 0.3px;
+}
+
+.cal-table__legal {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.cal-notes {
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: var(--green-bg);
+  border-left: 4px solid var(--green-light);
+  border-radius: var(--radius-md);
+}
+
+.cal-notes__stamp {
+  margin: 0 0 12px;
+  font-weight: 700;
+  color: var(--green-dark);
+  font-size: 0.9rem;
+}
+
+.cal-notes ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.cal-notes li {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.cal-notes li:last-child {
+  margin-bottom: 0;
 }
 
 /* ========== CONTACT ========== */
