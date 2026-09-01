@@ -7,24 +7,35 @@
             http-equiv="Content-Security-Policy"
             content="default-src 'none'; img-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'sha256-8TZc9z3IlDW+kh1U372kJ5DZhxP2zAfMg1Goc/mY4KI='; frame-src https://www.google.com; base-uri 'none'; form-action 'none'"
         />
-        <title>Gospodarstwo Rolno-Nasienne Ziętarscy — kwalifikowany materiał siewny</title>
+        <title>Kwalifikowany materiał siewny pszenicy ozimej — Ziętarscy</title>
         <meta
             name="description"
-            content="Kwalifikowany materiał siewny pszenicy ozimej — odmiany Euforia, Sova i Alegoria. Gospodarstwo rodzinne od 1860 roku, wysyłka kurierem na terenie całej Polski."
+            content="Kwalifikowany materiał siewny pszenicy ozimej: Euforia, Alegoria, Bestia, Willkox, Biesiada. Gospodarstwo spod Grudziądza, wysyłka kurierem po całej Polsce."
         />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href="https://nasiona-zietarscy.pl/" />
 
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="pl_PL" />
         <meta property="og:site_name" content="Gospodarstwo Rolno-Nasienne Ziętarscy" />
-        <meta property="og:title" content="Gospodarstwo Rolno-Nasienne Ziętarscy" />
+        <meta property="og:title" content="Kwalifikowany materiał siewny pszenicy ozimej — Ziętarscy" />
         <meta
             property="og:description"
-            content="Kwalifikowany materiał siewny pszenicy ozimej — odmiany Euforia, Sova i Alegoria. Wysyłka na terenie całej Polski."
+            content="Kwalifikowany materiał siewny pszenicy ozimej: Euforia, Alegoria, Bestia, Willkox, Biesiada. Wysyłka kurierem po całej Polsce."
         />
         <meta property="og:url" content="https://nasiona-zietarscy.pl/" />
         <meta property="og:image" content="https://nasiona-zietarscy.pl/assets/img/hero.jpg" />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1400" />
+        <meta property="og:image:alt" content="Łan pszenicy ozimej w gospodarstwie nasiennym Ziętarskich" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Kwalifikowany materiał siewny pszenicy ozimej — Ziętarscy" />
+        <meta
+            name="twitter:description"
+            content="Kwalifikowany materiał siewny pszenicy ozimej: Euforia, Alegoria, Bestia, Willkox, Biesiada. Wysyłka kurierem po całej Polsce."
+        />
+        <meta name="twitter:image" content="https://nasiona-zietarscy.pl/assets/img/hero.jpg" />
+        <meta name="twitter:image:alt" content="Łan pszenicy ozimej w gospodarstwie nasiennym Ziętarskich" />
 
         <link rel="icon" href="favicon.svg" type="image/svg+xml" />
         <meta name="theme-color" content="#1c6814" />
@@ -498,7 +509,7 @@
                         </a>
                         <a
                             class="contact__item"
-                            href="https://www.google.com/maps/search/?api=1&amp;query=Gospodarstwo%20Rolno-Nasienne%20Stefan%20Zi%C4%99tarski"
+                            href="https://maps.google.com/?cid=401172338873957240"
                             target="_blank"
                             rel="noopener"
                             aria-label="Słup 14, 86-330 Mełno — zobacz dojazd w Mapach Google (otwiera się w nowej karcie)"
@@ -541,23 +552,130 @@
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "name": "Gospodarstwo Rolno-Nasienne Stefan Ziętarski",
-                "url": "https://nasiona-zietarscy.pl/",
-                "image": "https://nasiona-zietarscy.pl/assets/img/hero.jpg",
-                "telephone": "+48600820685",
-                "email": "zietarscy@poczta.onet.pl",
-                "vatID": "PL8762027183",
-                "taxID": "8762027183",
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Słup 14",
-                    "postalCode": "86-330",
-                    "addressLocality": "Mełno",
-                    "addressCountry": "PL"
-                },
-                "areaServed": "PL",
-                "description": "Produkcja kwalifikowanego materiału siewnego pszenicy ozimej."
+                "@graph": [
+                    {
+                        "@type": "LocalBusiness",
+                        "@id": "https://nasiona-zietarscy.pl/#business",
+                        "name": "Gospodarstwo Rolno-Nasienne Stefan Ziętarski",
+                        "alternateName": "Gospodarstwo Rolno-Nasienne Ziętarscy",
+                        "url": "https://nasiona-zietarscy.pl/",
+                        "description": "Produkcja i sprzedaż kwalifikowanego materiału siewnego pszenicy ozimej — odmiany Euforia, Alegoria, Bestia, Willkox i Biesiada. Wysyłka kurierem na terenie całej Polski.",
+                        "image": {
+                            "@type": "ImageObject",
+                            "@id": "https://nasiona-zietarscy.pl/#hero-image",
+                            "url": "https://nasiona-zietarscy.pl/assets/img/hero.jpg",
+                            "width": 1920,
+                            "height": 1400,
+                            "caption": "Łan pszenicy ozimej w gospodarstwie nasiennym Ziętarskich"
+                        },
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://nasiona-zietarscy.pl/assets/img/logo-light.png",
+                            "width": 416,
+                            "height": 47
+                        },
+                        "telephone": "+48600820685",
+                        "email": "zietarscy@poczta.onet.pl",
+                        "vatID": "PL8762027183",
+                        "taxID": "8762027183",
+                        "foundingDate": "1860",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Słup 14",
+                            "postalCode": "86-330",
+                            "addressLocality": "Mełno",
+                            "addressRegion": "kujawsko-pomorskie",
+                            "addressCountry": "PL"
+                        },
+                        "geo": {
+                            "@type": "GeoCoordinates",
+                            "latitude": 53.4662682,
+                            "longitude": 19.0267108
+                        },
+                        "hasMap": "https://maps.google.com/?cid=401172338873957240",
+                        "sameAs": ["https://maps.google.com/?cid=401172338873957240"],
+                        "areaServed": {
+                            "@type": "Country",
+                            "name": "Polska"
+                        },
+                        "knowsLanguage": "pl",
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Kwalifikowany materiał siewny pszenicy ozimej",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Product",
+                                        "name": "Pszenica ozima Euforia — kwalifikowany materiał siewny",
+                                        "category": "Kwalifikowany materiał siewny pszenicy ozimej",
+                                        "description": "Najpopularniejsza odmiana w Polsce. Doskonałe plonowanie, rewelacyjna zimotrwałość (5,5–6), jakość E/A- stabilna także podczas mokrych żniw.",
+                                        "image": "https://nasiona-zietarscy.pl/assets/img/oferta/euforia-600.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Product",
+                                        "name": "Pszenica ozima Alegoria — kwalifikowany materiał siewny",
+                                        "category": "Kwalifikowany materiał siewny pszenicy ozimej",
+                                        "description": "Lider plonowania — numer 1 w intensywnej uprawie w badaniach COBORU 2023. Odporna na suszę i upały, wysoka MTZ, bogata w gluten i białko.",
+                                        "image": "https://nasiona-zietarscy.pl/assets/img/oferta/alegoria-600.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Product",
+                                        "name": "Pszenica ozima Bestia — kwalifikowany materiał siewny",
+                                        "category": "Kwalifikowany materiał siewny pszenicy ozimej",
+                                        "description": "Bardzo wysoki plon — 107% wzorca na A1 i A2 w doświadczeniach COBORU 2025. MTZ 49–51 g, przydatna do siewu opóźnionego i po kukurydzy.",
+                                        "image": "https://nasiona-zietarscy.pl/assets/img/oferta/bestia-900.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Product",
+                                        "name": "Pszenica ozima Willkox — kwalifikowany materiał siewny",
+                                        "category": "Kwalifikowany materiał siewny pszenicy ozimej",
+                                        "description": "Pszenica ozima jakościowa A o bardzo wysokim plonowaniu. Mocną stroną jest zdrowotność — szczególnie rdza żółta i mączniak. MTZ ok. 43,9 g.",
+                                        "image": "https://nasiona-zietarscy.pl/assets/img/oferta/willkox-768.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Product",
+                                        "name": "Pszenica ozima Biesiada — kwalifikowany materiał siewny",
+                                        "category": "Kwalifikowany materiał siewny pszenicy ozimej",
+                                        "description": "Uniwersalna odmiana pszenicy ozimej o szerokim zastosowaniu.",
+                                        "image": "https://nasiona-zietarscy.pl/assets/img/oferta/biesiada-626.jpg"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://nasiona-zietarscy.pl/#website",
+                        "url": "https://nasiona-zietarscy.pl/",
+                        "name": "Gospodarstwo Rolno-Nasienne Ziętarscy",
+                        "inLanguage": "pl-PL",
+                        "publisher": { "@id": "https://nasiona-zietarscy.pl/#business" }
+                    },
+                    {
+                        "@type": "WebPage",
+                        "@id": "https://nasiona-zietarscy.pl/#webpage",
+                        "url": "https://nasiona-zietarscy.pl/",
+                        "name": "Kwalifikowany materiał siewny pszenicy ozimej — Ziętarscy",
+                        "description": "Kwalifikowany materiał siewny pszenicy ozimej: Euforia, Alegoria, Bestia, Willkox, Biesiada. Gospodarstwo spod Grudziądza, wysyłka kurierem po całej Polsce.",
+                        "inLanguage": "pl-PL",
+                        "isPartOf": { "@id": "https://nasiona-zietarscy.pl/#website" },
+                        "about": { "@id": "https://nasiona-zietarscy.pl/#business" },
+                        "primaryImageOfPage": { "@id": "https://nasiona-zietarscy.pl/#hero-image" }
+                    }
+                ]
             }
         </script>
 

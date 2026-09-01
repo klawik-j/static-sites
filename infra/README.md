@@ -2,9 +2,10 @@
 
 The main stack. For each entry in `var.sites` it creates a private S3 origin
 bucket, a CloudFront distribution with Origin Access Control, a shared security
-headers policy, and — when custom domains are configured — an ACM certificate
-and Route 53 alias records. Site files under `../sites/<name>` are uploaded as
-managed objects.
+headers policy, and — when custom domains are configured — an ACM certificate,
+Route 53 alias records, and a viewer-request function that 301s every alias host
+to the first entry in `domain_names`. Site files under `../sites/<name>` are
+uploaded as managed objects.
 
 GitHub Actions applies this stack on every push to `master`. Applying it by hand
 should be rare.
