@@ -46,6 +46,21 @@ resource "aws_cloudfront_response_headers_policy" "site" {
   }
 }
 
+# Both the apex and www are aliases on one distribution, so without this every page
+# answers on two hostnames and Search has to guess which one to rank.
+resource "aws_cloudfront_function" "canonical_host" {
+  for_each = local.sites_with_domains
+
+  name    = "${var.project_name}-${each.key}-canonical-host"
+  runtime = "cloudfront-js-2.0"
+  comment = "Redirects alias hosts to ${each.value.domain_names[0]}."
+  publish = true
+
+  code = templatefile("${path.module}/functions/canonical-host.js.tftpl", {
+    canonical_host = each.value.domain_names[0]
+  })
+}
+
 resource "aws_cloudfront_distribution" "site" {
   for_each = var.sites
 
@@ -70,6 +85,16 @@ resource "aws_cloudfront_distribution" "site" {
     compress                   = true
     cache_policy_id            = data.aws_cloudfront_cache_policy.caching_optimized.id
     response_headers_policy_id = aws_cloudfront_response_headers_policy.site.id
+
+    # Runs ahead of the cache lookup, so a cached object can never bypass the redirect.
+    dynamic "function_association" {
+      for_each = contains(keys(local.sites_with_domains), each.key) ? [1] : []
+
+      content {
+        event_type   = "viewer-request"
+        function_arn = aws_cloudfront_function.canonical_host[each.key].arn
+      }
+    }
   }
 
   # The origin is private, so a missing key returns 403 rather than 404. Both are

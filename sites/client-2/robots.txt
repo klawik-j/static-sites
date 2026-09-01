@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nasiona-zietarscy.pl/sitemap.xml

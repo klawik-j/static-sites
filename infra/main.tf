@@ -26,9 +26,12 @@ locals {
   }
 
   # HTML is revalidated on every request so a deploy is visible immediately.
+  # robots.txt and sitemap.xml get a short TTL so crawl directives are not stale for a day.
   # Assets are cached at the edge and flushed by the invalidation after apply.
   cache_control = {
     ".html" = "public, max-age=0, must-revalidate"
+    ".txt"  = "public, max-age=3600"
+    ".xml"  = "public, max-age=3600"
   }
 
   site_files = flatten([
