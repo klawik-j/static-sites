@@ -47,7 +47,8 @@ resource "aws_cloudfront_response_headers_policy" "site" {
 }
 
 # Both the apex and www are aliases on one distribution, so without this every page
-# answers on two hostnames and Search has to guess which one to rank.
+# answers on two hostnames and Search has to guess which one to rank. The same function
+# also 301s the site's legacy paths listed in var.sites[*].redirects.
 resource "aws_cloudfront_function" "canonical_host" {
   for_each = local.sites_with_domains
 
@@ -58,6 +59,7 @@ resource "aws_cloudfront_function" "canonical_host" {
 
   code = templatefile("${path.module}/functions/canonical-host.js.tftpl", {
     canonical_host = each.value.domain_names[0]
+    redirects      = jsonencode(each.value.redirects)
   })
 }
 

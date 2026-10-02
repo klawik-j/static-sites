@@ -4,7 +4,8 @@ The main stack. For each entry in `var.sites` it creates a private S3 origin
 bucket, a CloudFront distribution with Origin Access Control, a shared security
 headers policy, and — when custom domains are configured — an ACM certificate,
 Route 53 alias records, and a viewer-request function that 301s every alias host
-to the first entry in `domain_names`. Site files under `../sites/<name>` are
+to the first entry in `domain_names` and 301s any legacy paths listed in the
+site's `redirects` map. Site files under `../sites/<name>` are
 uploaded as managed objects.
 
 GitHub Actions applies this stack on every push to `master`. Applying it by hand
@@ -50,7 +51,7 @@ terraform -chdir=infra output -json distribution_ids \
 | ------------------------ | ---------------- | --------------------------------------------------------- |
 | `aws_region`             | `eu-central-1`   | Region for the origin buckets                              |
 | `project_name`           | `static-sites`   | Prefix for bucket names and tags                           |
-| `sites`                  | two empty sites  | Map of site name to optional `domain_names` and `route53_zone_id` |
+| `sites`                  | two empty sites  | Map of site name to optional `domain_names`, `route53_zone_id`, and `redirects` (exact path → path, 301 on the canonical host) |
 | `error_document`         | `index.html`     | Object returned with a 404 status for 403/404 responses    |
 | `cloudfront_price_class` | `PriceClass_100` | Edge coverage                                              |
 

@@ -21,20 +21,45 @@ variable "sites" {
     Leave domain_names empty to serve the site on its CloudFront domain only.
     Supplying domain_names also requires route53_zone_id, which is used for
     certificate validation and the alias records.
+    redirects maps an exact request path to the path it should 301 to on the
+    canonical host. It is applied by the canonical-host function, so it needs
+    domain_names as well.
   EOT
 
   type = map(object({
     domain_names    = optional(list(string), [])
     route53_zone_id = optional(string)
+    redirects       = optional(map(string), {})
   }))
 
   default = {
     client-1 = {
-      domain_names  = ["lewhanna.com", "www.lewhanna.com"]
+      domain_names    = ["lewhanna.com", "www.lewhanna.com"]
       route53_zone_id = "Z07911732CKCCC0OA87PL"
+
+      # Pages of the previous multi-page site. The ones with Search history are
+      # /kontakt, /kontakt.html, /kalendarium and /kalendarium.html.
+      redirects = {
+        "/hanna-lewandowska"                      = "/"
+        "/indexENG.html"                          = "/"
+        "/kontakt"                                = "/#contact"
+        "/kontakt.html"                           = "/#contact"
+        "/kontakt.php"                            = "/#contact"
+        "/kontaktENG.html"                        = "/#contact"
+        "/kalendarium"                            = "/#calendar"
+        "/kalendarium.html"                       = "/#calendar"
+        "/baza-danych-odpadow"                    = "/#services"
+        "/baza-danych-odpadow.html"               = "/#services"
+        "/ewidencja-odpadow"                      = "/#services"
+        "/ewidencja-odpadow.html"                 = "/#services"
+        "/pomiar-zanieczyszczenia-powietrza"      = "/#services"
+        "/pomiar-zanieczyszczenia-powietrza.html" = "/#services"
+        "/pozwolenie-zintegrowane"                = "/#services"
+        "/pozwolenie-zintegrowane.html"           = "/#services"
+      }
     }
     client-2 = {
-      domain_names  = ["nasiona-zietarscy.pl", "www.nasiona-zietarscy.pl"]
+      domain_names    = ["nasiona-zietarscy.pl", "www.nasiona-zietarscy.pl"]
       route53_zone_id = "Z05544002629RK849CHOL"
     }
   }
@@ -42,6 +67,18 @@ variable "sites" {
   validation {
     condition     = alltrue([for site in var.sites : site.route53_zone_id != null if length(site.domain_names) > 0])
     error_message = "Every site with domain_names must also set route53_zone_id."
+  }
+
+  validation {
+    condition     = alltrue([for site in var.sites : length(site.domain_names) > 0 if length(site.redirects) > 0])
+    error_message = "redirects are served by the canonical-host function, which only exists for sites with domain_names."
+  }
+
+  validation {
+    condition = alltrue(flatten([
+      for site in var.sites : [for from, to in site.redirects : startswith(from, "/") && startswith(to, "/")]
+    ]))
+    error_message = "Every redirect source and target must be a path starting with /."
   }
 }
 
