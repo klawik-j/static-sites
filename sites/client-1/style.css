@@ -263,6 +263,7 @@ button {
   justify-content: center;
   text-align: center;
   background: url('img/bg-1.jpg') center/cover no-repeat;
+  background-image: image-set(url('img/bg-1.webp') type('image/webp'), url('img/bg-1.jpg') type('image/jpeg'));
   color: var(--white);
 }
 
